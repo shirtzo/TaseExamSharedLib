@@ -9,9 +9,9 @@ def call() {
 
     // Set the retrieved values as environment variables
     env.GIT_COMMIT = scmVars.GIT_COMMIT
-    env.GIT_COMMITTER_NAME = scmVars.GIT_COMMITTER_NAME
+    env.GIT_COMMITTER_EMAIL = scmVars.GIT_COMMITTER_EMAIL
 
     // Print to the console for debugging
     echo "Commit hash: ${env.GIT_COMMIT}"
-    echo "Committer name: ${env.GIT_COMMITTER_NAME}"
+    echo "Committer email: ${env.GIT_COMMITTER_EMAIL}"
 }
