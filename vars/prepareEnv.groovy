@@ -1,5 +1,5 @@
 def call() {
-    def committerEmail = sh (script: 'git --no-pager show -s --format=\'%ae\'', returnStdout: true).trim()
+    def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${env.GIT_COMMIT}", returnStdout: true).trim()
 
     return [
         codeCommiter: committerEmail, 
