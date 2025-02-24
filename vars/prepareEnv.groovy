@@ -1,5 +1,5 @@
 def call() {
-    def committer = sh(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
+    def committerEmail = sh (script: 'git --no-pager show -s --format=\'%ae\'', returnStdout: true).trim()
     
     return [
         codeCommiter: committer, 
