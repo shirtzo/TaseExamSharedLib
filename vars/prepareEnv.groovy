@@ -6,7 +6,7 @@ def call() {
         extensions: [[$class: 'CloneOption', depth: 0, noTags: false]]
     ])
 
-    def committerName = sh(script: "git --no-pager show -s --format='%cn' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
+    def committerName = sh(script: "git --no-pager show -s --format='%an' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
     def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
 
     return [
