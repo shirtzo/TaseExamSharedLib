@@ -3,7 +3,7 @@ def call() {
         $class: 'GitSCM',
         branches: [[name: '*/main']],
         userRemoteConfigs: [[url: 'https://github.com/shirtzo/TaseExam.git']],
-        extensions: [[$class: 'CloneOption', depth: 1, noTags: false]]
+        extensions: [[$class: 'CloneOption', depth: 0, noTags: false]]
     ])
 
     def committerName = sh(script: "git --no-pager show -s --format='%cn' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
