@@ -2,7 +2,7 @@ def call() {
     def committer = sh(script: "git log -1 --format='%cn'", returnStdout: true).trim()
 
     return [
-        codeCommiter: committer, 
+        codeCommiter: env.GIT_COMMITER_NAME, 
         commitHash: env.GIT_COMMIT, 
         gitUrl: env.GIT_URL
     ]
