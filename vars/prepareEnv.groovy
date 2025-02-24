@@ -6,13 +6,18 @@ def call() {
         extensions: [[$class: 'CloneOption', depth: 0, noTags: false]]
       ])
 
+
+    scmVars.each { key, value ->
+            echo "${key}: ${value}"
+        }
+
     env.GIT_COMMIT = scmVars.GIT_COMMIT
 
     def committerName = sh(script: "git --no-pager show -s --format='%cn' ${env.GIT_COMMIT}", returnStdout: true).trim()
     def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${env.GIT_COMMIT}", returnStdout: true).trim()
 
     return [
-        codeCommiter: env.GIT_COMMITTER_EMAIL,
+        codeCommiter: env.committerName,
         codeCommiterEmail: committerEmail,
         commitHash: env.GIT_COMMIT, 
         gitUrl: env.GIT_URL
