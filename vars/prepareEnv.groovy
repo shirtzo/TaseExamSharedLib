@@ -1,5 +1,5 @@
 def call() {
-    def committer = sh(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
+    def committer = sh(script: "git log -1 --pretty=format:'%cn'", returnStdout: true).trim()
     
     return [
         codeCommiter: committer, 
