@@ -4,22 +4,16 @@ def call() {
         branches: [[name: '*/main']],
         userRemoteConfigs: [[url: 'https://github.com/shirtzo/TaseExam.git']],
         extensions: [[$class: 'CloneOption', depth: 0, noTags: false]]
-      ])
+    ])
 
-
-    scmVars.each { key, value ->
-            echo "${key}: ${value}"
-        }
-
-    env.GIT_COMMIT = scmVars.GIT_COMMIT
-
-    def committerName = sh(script: "git --no-pager show -s --format='%cn' ${env.GIT_COMMIT}", returnStdout: true).trim()
-    def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${env.GIT_COMMIT}", returnStdout: true).trim()
+    def committerName = sh(script: "git --no-pager show -s --format='%cn' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
+    def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
 
     return [
-        codeCommiter: env.committerName,
-        codeCommiterEmail: committerEmail,
-        commitHash: env.GIT_COMMIT, 
-        gitUrl: env.GIT_URL
+        gitCommitHash: scmVars.GIT_COMMIT,
+        gitUrl: scmVars.GIT_URL,
+        gitBranch: scmVars.GIT_BRANCH,
+        committerName: committerName,
+        committerEmail: committerEmail
     ]
 }
