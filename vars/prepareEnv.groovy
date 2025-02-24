@@ -1,5 +1,9 @@
 def call() {
-    echo "Commit hash: ${env.GIT_COMMIT}"
-    echo "Committer name: ${env.GIT_COMMITTER_NAME}"
-    echo "git url: ${env.GIT_URL}"
+    def committer = sh(script: "git log -1 --format='%cn'", returnStdout: true).trim()
+
+    return [
+        codeCommiter: env.GIT_COMMITER_NAME, 
+        commitHash: env.GIT_COMMIT, 
+        gitUrl: env.GIT_URL
+    ]
 }
