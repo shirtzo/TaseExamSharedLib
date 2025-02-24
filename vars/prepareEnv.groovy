@@ -1,5 +1,6 @@
 def call() {
-    def committer = sh(script: "git show -s --format=\"%cn\" ${GIT_COMMIT}", returnStdout: true).trim()
+    sh 'echo "GIT_COMMITTER_NAME=$(git show -s --pretty=%cn)" > $WORKSPACE/envvars'
+    def committer = sh(script: ". $WORKSPACE/envvars && echo \$GIT_COMMITTER_NAME", returnStdout: true).trim()
     
     return [
         codeCommiter: committer, 
