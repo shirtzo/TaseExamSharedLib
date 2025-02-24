@@ -2,7 +2,7 @@ def call() {
     def scmVars = checkout([
         $class: 'GitSCM',
         branches: [[name: '*/main']],
-        userRemoteConfigs: [[url: 'https://github.com/your/repo.git']],
+        userRemoteConfigs: [[url: 'https://github.com/shirtzo/TaseExam.git']],
         extensions: [[$class: 'CloneOption', depth: 0, noTags: false]]
       ])
 
