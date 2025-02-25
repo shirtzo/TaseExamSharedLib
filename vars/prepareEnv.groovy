@@ -10,6 +10,7 @@ def call() {
     def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
 
     return [
+        gitCommitAuthour: scmVars.GIT_COMMIT_AUTHOUR,
         gitCommitHash: scmVars.GIT_COMMIT,
         gitUrl: scmVars.GIT_URL,
         gitBranch: scmVars.GIT_BRANCH,
