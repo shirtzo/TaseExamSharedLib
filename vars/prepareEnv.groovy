@@ -9,7 +9,7 @@ def call() {
     def committerName = sh(script: "git --no-pager show -s --format='%an' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
     def committerEmail = sh(script: "git --no-pager show -s --format='%ae' ${scmVars.GIT_COMMIT}", returnStdout: true).trim()
 
-    return [s
+    return [
         gitCommitHash: scmVars.GIT_COMMIT,
         gitUrl: scmVars.GIT_URL,
         gitBranch: scmVars.GIT_BRANCH,
